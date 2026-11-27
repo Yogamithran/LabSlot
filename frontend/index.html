@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LabSlot — Laboratory resources, made clear</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav container navbar" aria-label="Main navigation">
+      <a class="navbar-brand fw-bold" href="index.html"><span class="brand-mark">L</span>LabSlot</a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="main-navigation" aria-label="Toggle navigation">☰</button>
+      <div class="nav-panel" id="main-navigation" data-nav-panel>
+        <ul class="nav-links">
+          <li><a class="active" href="index.html" aria-current="page">Overview</a></li>
+          <li><a href="pages/labs.html">Labs &amp; equipment</a></li>
+          <li><a href="pages/booking.html">Request a booking</a></li>
+          <li><a href="pages/history.html">My activity</a></li>
+          <li><a href="pages/dashboard.html">Dashboard</a></li>
+        </ul>
+        <div class="nav-actions"><a class="btn btn-outline-primary" href="pages/login.html">Sign in</a><a class="btn btn-primary" href="pages/register.html">Create account</a></div>
+      </div>
+    </nav>
+  </header>
+  <main class="page-shell">
+    <section class="hero-section mb-5">
+      <div class="hero-content">
+        <div class="d-flex flex-wrap align-items-center gap-3 mb-4"><span class="eyebrow">A better way to work in the lab</span><span class="api-indicator" data-api-health>Checking API…</span></div>
+        <h1 class="fw-bold mb-4">Make every lab session count.</h1>
+        <p class="mb-4">Find laboratory spaces, check equipment status, and keep your academic work moving with one clear resource hub.</p>
+        <div class="d-flex flex-wrap gap-2"><a href="pages/labs.html" class="btn btn-light">Explore laboratories</a><a href="pages/register.html" class="btn btn-outline-light">Join LabSlot</a></div>
+      </div>
+    </section>
+    <section class="mb-5">
+      <div class="section-heading"><span class="eyebrow">Built around your role</span><h2 class="mt-2">One workspace, clear responsibilities</h2><p>LabSlot presents the tools relevant to students, faculty, and administrators.</p></div>
+      <div class="row g-3">
+        <div class="col-md-4"><article class="role-card"><div class="role-icon mb-3">S</div><h3 class="h5 fw-bold">Students</h3><p class="muted mb-0">View laboratories and equipment, manage your booking requests, and report equipment issues.</p></article></div>
+        <div class="col-md-4"><article class="role-card"><div class="role-icon mb-3">F</div><h3 class="h5 fw-bold">Faculty</h3><p class="muted mb-0">Review booking requests and monitor laboratory schedules with the right approval tools.</p></article></div>
+        <div class="col-md-4"><article class="role-card"><div class="role-icon mb-3">A</div><h3 class="h5 fw-bold">Administrators</h3><p class="muted mb-0">Manage laboratory spaces, equipment inventory, users, bookings, and reported issues.</p></article></div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container text-center">LabSlot &copy; 2026 · College laboratory resource management</div></footer>
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

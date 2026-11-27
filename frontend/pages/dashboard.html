@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — LabSlot</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    crossorigin="anonymous"
+  />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="site-header"><nav class="site-nav container navbar" aria-label="Main navigation"><a class="navbar-brand fw-bold" href="../index.html"><span class="brand-mark">L</span>LabSlot</a><button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="main-navigation" aria-label="Toggle navigation">☰</button><div class="nav-panel" id="main-navigation" data-nav-panel><ul class="nav-links"><li><a href="../index.html">Overview</a></li><li><a href="labs.html">Labs</a></li><li><a href="booking.html">Booking</a></li><li><a href="issue-report.html">Report issue</a></li><li><a href="history.html">My activity</a></li><li><a class="active" href="dashboard.html" aria-current="page">Dashboard</a></li><li><a href="faculty.html">Faculty</a></li><li><a href="admin.html">Admin</a></li></ul><div class="nav-actions"><a class="btn btn-outline-primary" href="login.html" data-logout>Sign out</a><span class="logout-message" data-logout-message role="alert" aria-live="assertive"></span></div></div></nav></header>
+  <main class="page-shell" data-dashboard>
+    <section class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4"><div><span class="eyebrow">Your workspace</span><h1 class="h2 fw-bold mt-2 mb-1">Welcome, <span data-profile-name>there</span></h1><p class="muted mb-0">Here’s the latest view of your LabSlot activity.</p></div><span class="badge-soft" data-profile-role>Loading profile…</span></section>
+    <div class="status-message mb-4" data-dashboard-message></div>
+    <section class="row g-3 mb-5" aria-label="Account summary"><div class="col-sm-6 col-lg-4"><article class="metric-card"><div class="metric-icon">B</div><div><p class="metric-label">Bookings returned</p><p class="metric-value" data-booking-count>—</p></div></article></div><div class="col-sm-6 col-lg-4"><a class="metric-card text-decoration-none" href="labs.html"><div class="metric-icon">L</div><div><p class="metric-label">Discover resources</p><p class="metric-value">Browse labs <span aria-hidden="true">→</span></p></div></a></div></section>
+    <section><div class="section-heading"><span class="eyebrow">From your account</span><h2 class="mt-2">Bookings</h2><p>Booking data is loaded from your authenticated account.</p></div><div class="data-list" data-bookings><div class="loading">Loading bookings…</div></div></section>
+  </main>
+  <footer class="site-footer"><div class="container text-center">LabSlot · Your campus laboratory workspace</div></footer>
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

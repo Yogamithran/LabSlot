@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administration — LabSlot</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="site-header"><nav class="site-nav container navbar" aria-label="Main navigation"><a class="navbar-brand fw-bold" href="../index.html"><span class="brand-mark">L</span>LabSlot</a><button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="main-navigation" aria-label="Toggle navigation">☰</button><div class="nav-panel" id="main-navigation" data-nav-panel><ul class="nav-links"><li><a href="../index.html">Overview</a></li><li><a href="labs.html">Labs</a></li><li><a href="booking.html">Booking</a></li><li><a href="issue-report.html">Report issue</a></li><li><a href="history.html">My activity</a></li><li><a href="dashboard.html">Student</a></li><li><a href="faculty.html">Faculty</a></li><li><a class="active" href="admin.html" aria-current="page">Admin</a></li></ul><div class="nav-actions"><a class="btn btn-outline-primary" href="login.html">Sign in</a></div></div></nav></header>
+  <main class="page-shell" data-admin-page>
+    <section class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4"><div><span class="eyebrow">Administration</span><h1 class="h2 fw-bold mt-2 mb-2">Resource management</h1><p class="muted mb-0">Manage live laboratory, equipment, and issue records through the LabSlot API.</p></div><div class="api-indicator text-secondary" data-api-health data-pending-label="Backend connection pending" aria-live="polite">Checking backend…</div></section>
+    <div class="status-message mb-4" data-admin-message aria-live="polite"></div>
+    <div class="row g-4 mb-5">
+      <section class="col-lg-6"><form class="surface-card p-4" id="admin-lab-form"><h2 class="h5 fw-bold">Add a laboratory</h2><p class="form-note mb-3">Creates a record through the admin-only API endpoint.</p><div class="mb-3"><label class="form-label" for="admin-lab-name">Laboratory name</label><input class="form-control" id="admin-lab-name" name="name" required maxlength="120" /></div><div class="mb-3"><label class="form-label" for="admin-lab-location">Location</label><input class="form-control" id="admin-lab-location" name="location" required maxlength="160" /></div><div class="mb-3"><label class="form-label" for="admin-lab-description">Description</label><textarea class="form-control" id="admin-lab-description" name="description" rows="2" maxlength="500"></textarea></div><button class="btn btn-primary" type="submit">Add laboratory</button><div class="status-message" data-lab-form-message aria-live="polite"></div></form></section>
+      <section class="col-lg-6"><form class="surface-card p-4" id="admin-equipment-form"><h2 class="h5 fw-bold">Add equipment</h2><p class="form-note mb-3">Laboratory choices come from live API data.</p><div class="mb-3"><label class="form-label" for="admin-equipment-lab">Laboratory</label><select class="form-select" id="admin-equipment-lab" name="lab_id" required disabled data-admin-lab-select><option value="">Loading laboratories…</option></select></div><div class="mb-3"><label class="form-label" for="admin-equipment-name">Equipment name</label><input class="form-control" id="admin-equipment-name" name="name" required maxlength="120" /></div><div class="mb-3"><label class="form-label" for="admin-equipment-quantity">Quantity</label><input class="form-control" id="admin-equipment-quantity" name="quantity" type="number" min="1" step="1" required /></div><div class="mb-3"><label class="form-label" for="admin-equipment-status">Availability status</label><select class="form-select" id="admin-equipment-status" name="status" required><option value="">Choose a status</option><option value="available">Available</option><option value="unavailable">Unavailable</option><option value="maintenance">Maintenance</option></select></div><button class="btn btn-primary" type="submit" data-admin-equipment-submit disabled>Add equipment</button><div class="status-message" data-equipment-form-message aria-live="polite"></div></form></section>
+    </div>
+    <section class="mb-5"><div class="section-heading"><h2>Laboratories</h2><p>Live records; edit and delete actions require successful API responses.</p></div><div class="data-list" data-admin-labs><div class="loading">Loading laboratories…</div></div></section>
+    <section class="mb-5"><div class="section-heading"><h2>Equipment</h2><p>Inventory management is restricted to administrator API access.</p></div><div class="data-list" data-admin-equipment><div class="loading">Loading equipment…</div></div></section>
+    <section><div class="section-heading"><h2>Equipment issues</h2><p>Update issue workflow status using the admin issue endpoint.</p></div><div class="data-list" data-admin-issues><div class="loading">Loading reported issues…</div></div></section>
+  </main>
+  <footer class="site-footer"><div class="container text-center">LabSlot · Administrative resource tools</div></footer>
+  <script src="../js/api.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
