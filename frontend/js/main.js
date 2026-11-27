@@ -83,38 +83,70 @@ async function submitAuthForm(event, endpoint, destination) {
   }
 }
 
-async function initializeDashboard() {
+function initializeDashboard() {
   const root = document.querySelector("[data-dashboard]");
   if (!root) return;
-  const profileNode = document.querySelector("[data-profile-name]");
-  const roleNode = document.querySelector("[data-profile-role]");
-  const bookingsNode = document.querySelector("[data-bookings]");
-  try {
-    const result = apiRequest("/auth/me", { method: "GET" });
-    const bookingsRequest = apiRequest("/bookings", { method: "GET" });
-    const [profileResult, bookingsResult] = await Promise.allSettled([result, bookingsRequest]);
-    if (profileResult.status === "fulfilled") {
-      const profile = apiResource(profileResult.value, "user") || {};
-      profileNode.textContent = profile.full_name || profile.name || profile.email || "Your account";
-      roleNode.textContent = profile.role || "Member";
-    } else {
-      profileNode.textContent = "Profile unavailable";
-      roleNode.textContent = "Unavailable";
-      setMessage(document.querySelector("[data-dashboard-message]"), "Your profile could not be loaded. Check the API details and try again.", "error");
-      appendErrorDetails(document.querySelector("[data-dashboard-message]"), profileResult.reason);
-    }
-    if (bookingsResult.status === "fulfilled") {
-      const bookings = apiResource(bookingsResult.value, "bookings");
-      renderRecords(bookingsNode, bookings, "No bookings were returned for this account.", "booking");
-      const count = Array.isArray(bookings) ? bookings.length : "—";
-      document.querySelector("[data-booking-count]").textContent = count;
-    } else {
-      renderApiError(bookingsNode, "booking information", bookingsResult.reason, () => initializeDashboard());
-    }
-  } catch (error) {
-    setMessage(document.querySelector("[data-dashboard-message]"), "The dashboard could not load account information.", "error");
-    appendErrorDetails(document.querySelector("[data-dashboard-message]"), error);
-  }
+  const sampleBookings = [
+    { lab: "Innovation Lab", dayOffset: 1, start: "09:30", end: "11:00", status: "Approved" },
+    { lab: "Applied Sciences Lab", dayOffset: 3, start: "13:00", end: "14:30", status: "Pending" },
+    { lab: "Digital Systems Lab", dayOffset: 5, start: "10:00", end: "11:30", status: "Approved" },
+  ];
+  const sampleActivity = [
+    { title: "Booking request submitted", detail: "Applied Sciences Lab · Pending", dayOffset: 0 },
+    { title: "Booking approved", detail: "Innovation Lab · 09:30–11:00", dayOffset: 1 },
+    { title: "Equipment issue reported", detail: "Optical microscope · Under review", dayOffset: 2 },
+  ];
+
+  root.querySelector("[data-total-bookings]").textContent = "8";
+  root.querySelector("[data-upcoming-bookings]").textContent = String(sampleBookings.length);
+  root.querySelector("[data-pending-bookings]").textContent = String(sampleBookings.filter((booking) => booking.status === "Pending").length);
+  root.querySelector("[data-available-labs]").textContent = "5";
+
+  const bookingContainer = root.querySelector("[data-dashboard-bookings]");
+  sampleBookings.forEach((booking) => {
+    const item = document.createElement("article");
+    item.className = "booking-preview-card";
+    const date = new Date();
+    date.setDate(date.getDate() + booking.dayOffset);
+    const dateText = new Intl.DateTimeFormat(undefined, { weekday: "short", month: "short", day: "numeric" }).format(date);
+    const icon = document.createElement("span");
+    icon.className = "booking-date-icon";
+    icon.setAttribute("aria-hidden", "true");
+    icon.textContent = date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
+    const details = document.createElement("div");
+    details.className = "booking-preview-details";
+    const title = document.createElement("h3");
+    title.textContent = booking.lab;
+    const schedule = document.createElement("p");
+    schedule.textContent = `${dateText} · ${booking.start}–${booking.end}`;
+    const status = document.createElement("span");
+    status.className = `booking-status ${booking.status.toLowerCase() === "pending" ? "is-pending" : "is-approved"}`;
+    status.textContent = booking.status;
+    details.append(title, schedule);
+    item.append(icon, details, status);
+    bookingContainer.append(item);
+  });
+
+  const activityContainer = root.querySelector("[data-dashboard-activity]");
+  sampleActivity.forEach((activity) => {
+    const item = document.createElement("li");
+    const marker = document.createElement("span");
+    marker.className = "activity-marker";
+    marker.setAttribute("aria-hidden", "true");
+    const content = document.createElement("div");
+    const title = document.createElement("strong");
+    title.textContent = activity.title;
+    const detail = document.createElement("p");
+    detail.textContent = activity.detail;
+    const when = document.createElement("time");
+    const date = new Date();
+    date.setDate(date.getDate() - activity.dayOffset);
+    when.dateTime = date.toISOString();
+    when.textContent = new Intl.DateTimeFormat(undefined, { month: "short", day: "numeric" }).format(date);
+    content.append(title, detail, when);
+    item.append(marker, content);
+    activityContainer.append(item);
+  });
 }
 
 async function initializeLabs() {
