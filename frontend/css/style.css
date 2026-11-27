@@ -93,6 +93,58 @@ a { color: var(--labslot-primary); }
 .api-error-details summary { width: fit-content; cursor: pointer; font-weight: 650; }
 .logout-message { max-width: 260px; color: #8d2935; font-size: .78rem; }
 
+/* Student dashboard preview */
+.dashboard-page { display: grid; gap: 1.5rem; }
+.dashboard-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 1.5rem; }
+.preview-notice { display: flex; align-items: flex-start; gap: .75rem; max-width: 440px; padding: .9rem 1rem; border: 1px solid #e6d9b8; border-radius: 14px; color: #68501b; background: #fffaf0; font-size: .83rem; }
+.preview-notice > span { font-size: 1.1rem; }
+.preview-notice strong { display: block; margin-bottom: .15rem; }
+.preview-notice p { color: #786b4c; line-height: 1.45; }
+.dashboard-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; }
+.dashboard-metric { display: flex; align-items: center; gap: 1rem; min-width: 0; padding: 1.2rem; border: 1px solid var(--labslot-border); border-radius: 18px; background: #fff; box-shadow: 0 6px 24px rgba(28,48,87,.035); }
+.dashboard-metric .metric-value { margin: .2rem 0 0; font-size: 1.75rem; line-height: 1.1; }
+.metric-caption { display: block; margin-top: .35rem; color: #8a96a9; font-size: .73rem; }
+.metric-icon-blue { color: #3970c9; background: #edf5ff; }
+.metric-icon-amber { color: #a56a11; background: #fff5df; }
+.metric-icon-green { color: #18815f; background: #e9f8f2; }
+.dashboard-columns { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(300px, .85fr); gap: 1rem; align-items: start; }
+.dashboard-panel, .quick-links-panel { min-width: 0; padding: clamp(1.1rem, 2.5vw, 1.6rem); border: 1px solid var(--labslot-border); border-radius: 20px; background: #fff; box-shadow: 0 6px 24px rgba(28,48,87,.035); }
+.dashboard-section-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; }
+.dashboard-section-heading h2, .quick-links-panel h2 { font-size: 1.35rem; }
+.text-link { flex: 0 0 auto; font-size: .86rem; font-weight: 650; text-decoration: none; }
+.booking-preview-list { display: grid; gap: .75rem; }
+.booking-preview-card { display: flex; align-items: center; gap: .85rem; min-width: 0; padding: .9rem; border: 1px solid #edf0f5; border-radius: 14px; }
+.booking-date-icon { display: grid; place-items: center; flex: 0 0 54px; min-height: 50px; border-radius: 12px; color: var(--labslot-primary); background: #eff3ff; font-size: .78rem; font-weight: 750; text-align: center; }
+.booking-preview-details { flex: 1 1 auto; min-width: 0; }
+.booking-preview-details h3 { margin: 0; overflow-wrap: anywhere; font-size: .94rem; font-weight: 720; }
+.booking-preview-details p { margin: .25rem 0 0; color: var(--labslot-muted); font-size: .8rem; }
+.booking-status { flex: 0 0 auto; padding: .35rem .55rem; border-radius: 99px; font-size: .72rem; font-weight: 700; }
+.booking-status.is-approved { color: #137552; background: #eaf8f1; }
+.booking-status.is-pending { color: #8c5a0c; background: #fff4df; }
+.preview-footnote { margin: 1rem 0 0; color: #8a96a9; font-size: .75rem; }
+.activity-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.activity-list li { position: relative; display: grid; grid-template-columns: 14px minmax(0, 1fr); gap: .75rem; padding: 0 0 1.2rem; }
+.activity-list li:not(:last-child)::after { position: absolute; top: 14px; bottom: 0; left: 6px; width: 1px; background: #e5eaf2; content: ""; }
+.activity-marker { z-index: 1; width: 13px; height: 13px; margin-top: 3px; border: 3px solid #dfe7ff; border-radius: 50%; background: var(--labslot-primary); }
+.activity-list strong { display: block; font-size: .86rem; }
+.activity-list p { margin: .2rem 0; color: var(--labslot-muted); font-size: .78rem; }
+.activity-list time { color: #8995a8; font-size: .72rem; }
+.quick-links-panel .section-heading { margin-bottom: 1rem; }
+.quick-link-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .75rem; }
+.quick-link-card { display: flex; align-items: center; gap: .7rem; min-width: 0; padding: .9rem; border: 1px solid var(--labslot-border); border-radius: 14px; color: var(--labslot-ink); text-decoration: none; transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease; }
+.quick-link-card:hover { transform: translateY(-2px); border-color: #bdcdf8; color: var(--labslot-primary); box-shadow: 0 8px 20px rgba(28,48,87,.06); }
+.quick-link-icon { display: grid; place-items: center; flex: 0 0 38px; width: 38px; height: 38px; border-radius: 11px; color: var(--labslot-primary); background: #eff3ff; font-size: 1rem; font-weight: 750; }
+.quick-link-card strong, .quick-link-card small { display: block; }
+.quick-link-card strong { font-size: .84rem; }
+.quick-link-card small { margin-top: .15rem; color: var(--labslot-muted); font-size: .7rem; line-height: 1.35; }
+.quick-link-arrow { margin-left: auto; color: #99a5b8; }
+
+@media (max-width: 991.98px) {
+  .dashboard-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dashboard-columns { grid-template-columns: 1fr; }
+  .quick-link-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 @media (max-width: 1099.98px) {
   .site-nav { min-height: 68px; flex-wrap: wrap; }
   .nav-toggle { display: inline-grid; place-items: center; }
@@ -107,6 +159,22 @@ a { color: var(--labslot-primary); }
   .auth-aside { padding: 1rem 0; }
   .auth-aside h1 { font-size: 2.5rem; }
   .hero-section { border-radius: 20px; }
+}
+
+@media (max-width: 575.98px) {
+  .dashboard-page { gap: 1rem; }
+  .dashboard-heading { align-items: stretch; flex-direction: column; gap: 1rem; }
+  .dashboard-metrics { gap: .65rem; }
+  .dashboard-metric { align-items: flex-start; flex-direction: column; gap: .65rem; padding: .9rem; border-radius: 15px; }
+  .dashboard-metric .metric-icon { width: 38px; height: 38px; border-radius: 12px; }
+  .dashboard-metric .metric-label { min-height: 2.3em; font-size: .78rem; }
+  .dashboard-metric .metric-value { font-size: 1.5rem; }
+  .metric-caption { font-size: .68rem; }
+  .dashboard-panel, .quick-links-panel { padding: 1rem; border-radius: 16px; }
+  .dashboard-section-heading { align-items: flex-start; }
+  .booking-preview-card { align-items: flex-start; flex-wrap: wrap; }
+  .booking-status { margin-left: 4.1rem; }
+  .quick-link-grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
